@@ -21,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4225CEBB1C25DBCC00952F40 /* C4QColorPickerViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = C4QColorPickerViewControllerDelegate.h; sourceTree = "<group>"; };
 		4292FCC8B28330B5275CBFBD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4298908874A5133FD8BE086A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8D610E941C2477EB00AADDC2 /* C4QCatFactsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4QCatFactsTableViewController.h; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 				8D610E9D1C2477EB00AADDC2 /* C4QViewController.m */,
 				8D610E961C2477EB00AADDC2 /* C4QColorPickerViewController.h */,
 				8D610E971C2477EB00AADDC2 /* C4QColorPickerViewController.m */,
+				4225CEBB1C25DBCC00952F40 /* C4QColorPickerViewControllerDelegate.h */,
 				8D610E941C2477EB00AADDC2 /* C4QCatFactsTableViewController.h */,
 				8D610E951C2477EB00AADDC2 /* C4QCatFactsTableViewController.m */,
 				8DA03F721C2499F400328B53 /* C4QCatFactsDetailViewController.h */,
@@ -134,7 +136,6 @@
 				8D8752FC1C24774700BBD328 /* Sources */,
 				8D8752FD1C24774700BBD328 /* Frameworks */,
 				8D8752FE1C24774700BBD328 /* Resources */,
-				3684AD5BAB77F4944D6E5799 /* Embed Pods Frameworks */,
 				91854005019C45D9F05BF3D4 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -205,21 +206,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		3684AD5BAB77F4944D6E5799 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		91854005019C45D9F05BF3D4 /* Copy Pods Resources */ = {

@@ -8,10 +8,24 @@
 
 #import "C4QViewController.h"
 
-@interface C4QViewController ()
+@interface C4QViewController ()<C4QColorPickerViewControllerDelegate>
 
 @end
 
 @implementation C4QViewController
+
+- (void)colorPickerViewController:(C4QColorPickerViewController *)vc didPickColorButton:(UIButton *)colorButton{
+    
+    self.view.backgroundColor = colorButton.backgroundColor;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqual: @"ColorPickerIdentifier"]) {
+        C4QColorPickerViewController *colorPickerVC = segue.destinationViewController;
+        colorPickerVC.delegate = self;
+    }
+}
+
 
 @end
