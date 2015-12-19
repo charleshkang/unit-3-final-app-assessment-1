@@ -11,6 +11,7 @@
 @interface C4QCustomTableViewCell : UITableViewCell
 
 @property (nonatomic) NSString *catFact;
-@property (weak, nonatomic) IBOutlet UILabel *catFactLabel;
+@property (weak, nonatomic) IBOutlet UILabel *factLabel;
+
 
 @end

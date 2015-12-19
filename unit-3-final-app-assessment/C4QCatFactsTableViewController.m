@@ -59,6 +59,22 @@
     }];
 }
 
+#pragma mark - API
+
+- (IBAction)savedCatFactsTapped:(id)sender {
+    
+    C4QSavedFactsTableViewController *vc = (C4QSavedFactsTableViewController *)[self.storyboard instantiateViewControllerWithIdentifier: @"savedCatFactDetailVC"];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
+    navController.navigationBar.topItem.title =  @"Your Cat Facts";
+    navController.navigationBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissView:)];
+    
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+- (void) dismissView:(id)sender {
+    
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Table view data source
 
@@ -76,9 +92,9 @@
 {
     C4QCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"catFactIdentifier"];
     
-    cell.catFactLabel = [self.catData objectAtIndex:indexPath.row];
-    cell.catFactLabel = [self.catData objectAtIndex:indexPath.row];
-//    cell.catFactLabel.text.textAlignment = NSTextAlignmentJustified;
+    cell.catFact = [self.catData objectAtIndex:indexPath.row];
+    cell.factLabel.text = [self.catData objectAtIndex:indexPath.row];
+    cell.factLabel.textAlignment = NSTextAlignmentJustified;
     return cell;
 }
 
@@ -88,23 +104,6 @@
     controller.catFact = [self.catData objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:controller animated:YES];
     
-}
-
-#pragma mark - API
-
-- (IBAction)savedCatFactsTapped:(id)sender {
-    
-    C4QSavedFactsTableViewController *vc = (C4QSavedFactsTableViewController *)[self.storyboard instantiateViewControllerWithIdentifier: @"savedCatFactDetailVC"];
-    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
-    navController.navigationBar.topItem.title =  @"Your Cat Facts";
-    navController.navigationBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissView:)];
-    
-    [self.navigationController presentViewController:navController animated:YES completion:nil];
-}
-
-- (void) dismissView:(id)sender {
-    
-    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

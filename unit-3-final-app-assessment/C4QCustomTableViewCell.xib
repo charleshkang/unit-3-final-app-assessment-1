@@ -53,7 +53,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="catFactLabel" destination="BBU-G0-7pU" id="WP4-K8-dsV"/>
+                <outlet property="factLabel" destination="BBU-G0-7pU" id="3iF-H2-QPK"/>
             </connections>
         </tableViewCell>
     </objects>
