@@ -40,7 +40,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CatFactIdentifier" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"catFactIdentifier" forIndexPath:indexPath];
     
     NSString *catFact = [self.catFacts objectAtIndex:indexPath.row];
     cell.textLabel.text = catFact;
@@ -53,6 +53,10 @@
 -(void)getCatFactsFromAPIWithCallbackBlock:(void(^)())block{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+//    manager.responseSerializer.acceptableContentTypes = nil;
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"javascript"];
+    
     
     [manager GET:@"http://catfacts-api.appspot.com/api/facts?number=100" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         
@@ -67,7 +71,6 @@
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
-    
 }
 
 @end

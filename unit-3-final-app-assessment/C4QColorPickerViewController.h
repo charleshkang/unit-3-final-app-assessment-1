@@ -12,7 +12,7 @@
 
 @interface C4QColorPickerViewController : UIViewController
 
-@property (nonatomic, weak) id<C4QColorPickerViewControllerDelegate>delegate;
+@property (nonatomic, weak) id <C4QColorPickerViewControllerDelegate> delegate;
 
 
 @end
