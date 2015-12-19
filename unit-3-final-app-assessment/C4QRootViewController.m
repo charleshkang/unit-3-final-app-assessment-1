@@ -16,11 +16,10 @@
 
 @implementation C4QRootViewController
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // changed the unhide color to red
+//     changed the unhide color to red
     self.onwardButton.hidden = self.view.backgroundColor != [UIColor redColor];
     
 }

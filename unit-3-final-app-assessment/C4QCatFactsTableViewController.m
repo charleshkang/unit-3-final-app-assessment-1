@@ -54,13 +54,7 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-//    manager.responseSerializer.acceptableContentTypes = nil;
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"javascript"];
-    
-    
     [manager GET:@"http://catfacts-api.appspot.com/api/facts?number=100" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        
-        NSLog(@"JSON: %@", responseObject);
         
         NSDictionary *catFacts = responseObject;
         
