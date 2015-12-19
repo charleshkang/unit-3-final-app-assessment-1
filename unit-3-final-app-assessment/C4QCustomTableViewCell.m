@@ -12,27 +12,26 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
+
 - (IBAction)addCatFactTapped:(UIButton *)sender {
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"savedFacts"]) {
         NSArray *catFactArray = [[NSUserDefaults standardUserDefaults] objectForKey:@"savedFacts"];
-        NSMutableArray *catMut = [catFactArray mutableCopy];
-        [catMut addObject:self.catFact];
-        NSArray *catFactArrFinal = [catMut copy];
-        [[NSUserDefaults standardUserDefaults] setObject:catFactArrFinal forKey:@"savedFacts"];
+        NSMutableArray *mutableCatArr = [catFactArray mutableCopy];
+        [mutableCatArr addObject:self.catFact];
+        NSArray *catFactArr = [mutableCatArr copy];
+        [[NSUserDefaults standardUserDefaults] setObject:catFactArr forKey:@"savedFacts"];
         
-    }
-    else{
+    } else {
+        
         NSArray *catFactArray = [[NSArray alloc]initWithObjects:self.catFact, nil];
         [[NSUserDefaults standardUserDefaults] setObject:catFactArray forKey:@"savedFacts"];
     }
     
     UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Saved"
-                                  message:@"New cat fact saved!"
+                                  message:@"New Cat Fact Saved!"
                                   preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* yesButton = [UIAlertAction

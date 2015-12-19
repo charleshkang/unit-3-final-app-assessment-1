@@ -6,12 +6,18 @@
 //  Copyright © 2015 Michael Kavouras. All rights reserved.
 //
 
-#import "C4QCatFactsTableViewController.h"
 #import <AFNetworking/AFNetworking.h>
+
+#import "C4QCatFactsTableViewController.h"
+#import "C4QCustomTableViewCell.h"
+#import "C4QCatFactsDetailViewController.h"
+#import "C4QSavedFactsTableViewController.h"
 
 #define CAT_API_URL @"http://catfacts-api.appspot.com/api/facts?number=100"
 
 @interface C4QCatFactsTableViewController ()
+
+@property (nonatomic) NSMutableArray *catData;
 
 @end
 
@@ -21,10 +27,38 @@
 {
     [super viewDidLoad];
     
-    [self getCatFactsFromAPIWithCallbackBlock:^{
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 15.0;
+    
+    UINib *customCatNib = [UINib nibWithNibName:@"C4QCustomTableViewCell" bundle:nil];
+    [self.tableView registerNib:customCatNib forCellReuseIdentifier:@"catFactIdentifier"];
+    self.catData = [[NSMutableArray alloc] init];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [manager GET:CAT_API_URL parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSError *error;
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:&error];
+        
+        NSArray *facts = [jsonDict objectForKey:@"facts"];
+        
+        for ( NSString* fact in facts ) {
+            
+            [self.catData addObject:fact];
+        }
+        
         [self.tableView reloadData];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"fail:%@", error);
     }];
 }
+
 
 #pragma mark - Table view data source
 
@@ -35,36 +69,42 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.catFacts.count;
+    return [self.catData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"catFactIdentifier" forIndexPath:indexPath];
+    C4QCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"catFactIdentifier"];
     
-    NSString *catFact = [self.catFacts objectAtIndex:indexPath.row];
-    cell.textLabel.text = catFact;
-    
+    cell.catFactLabel = [self.catData objectAtIndex:indexPath.row];
+    cell.catFactLabel = [self.catData objectAtIndex:indexPath.row];
+//    cell.catFactLabel.text.textAlignment = NSTextAlignmentJustified;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    C4QCatFactsDetailViewController *controller = (C4QCatFactsDetailViewController *)[self.storyboard instantiateViewControllerWithIdentifier: @"catFactDetailVC"];
+    controller.catFact = [self.catData objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 #pragma mark - API
 
--(void)getCatFactsFromAPIWithCallbackBlock:(void(^)())block{
+- (IBAction)savedCatFactsTapped:(id)sender {
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    C4QSavedFactsTableViewController *vc = (C4QSavedFactsTableViewController *)[self.storyboard instantiateViewControllerWithIdentifier: @"savedCatFactDetailVC"];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:vc];
+    navController.navigationBar.topItem.title =  @"Your Cat Facts";
+    navController.navigationBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissView:)];
     
-    [manager GET:@"http://catfacts-api.appspot.com/api/facts?number=100" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        
-        NSDictionary *catFacts = responseObject;
-        
-        self.catFacts = [catFacts objectForKey:@"facts"];
-        
-        block();
-        
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
+}
+
+- (void) dismissView:(id)sender {
+    
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

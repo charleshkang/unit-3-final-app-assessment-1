@@ -14,7 +14,6 @@
 
 @end
 
-
 @interface C4QColorPickerViewController : UIViewController
 
 @property (weak, nonatomic) id<ColorPassDelegate> delegate;

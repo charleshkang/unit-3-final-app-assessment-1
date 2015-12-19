@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Text" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBU-G0-7pU">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cat Facts" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBU-G0-7pU">
                         <rect key="frame" x="16" y="8" width="252" height="28"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -39,7 +39,7 @@
                     <constraint firstAttribute="trailing" secondItem="vC0-lI-J6F" secondAttribute="trailing" constant="16" id="NYX-bb-0xk"/>
                     <constraint firstItem="vC0-lI-J6F" firstAttribute="leading" secondItem="BBU-G0-7pU" secondAttribute="trailing" constant="16" id="SAQ-Bx-rCX"/>
                     <constraint firstItem="BBU-G0-7pU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="UwB-sf-5QA"/>
-                    <constraint firstAttribute="bottom" secondItem="BBU-G0-7pU" secondAttribute="bottom" constant="8" id="f1R-Wx-9Vt"/>
+                    <constraint firstAttribute="bottom" secondItem="BBU-G0-7pU" secondAttribute="bottom" constant="7" id="f1R-Wx-9Vt"/>
                     <constraint firstItem="vC0-lI-J6F" firstAttribute="leading" secondItem="BBU-G0-7pU" secondAttribute="trailing" constant="8" id="lg6-Fj-5xE"/>
                     <constraint firstItem="BBU-G0-7pU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rWN-nT-qoH"/>
                     <constraint firstItem="vC0-lI-J6F" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="6" id="z8T-DL-cQV"/>
@@ -54,7 +54,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="catFactLabel" destination="BBU-G0-7pU" id="WP4-K8-dsV"/>
-                <outlet property="factLabel" destination="BBU-G0-7pU" id="pAo-6o-tLF"/>
             </connections>
         </tableViewCell>
     </objects>

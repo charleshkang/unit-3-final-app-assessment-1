@@ -10,6 +10,4 @@
 
 @interface C4QCatFactsTableViewController : UITableViewController
 
-@property (nonatomic) NSArray *catFacts;
-
 @end
